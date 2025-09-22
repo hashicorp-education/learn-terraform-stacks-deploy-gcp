@@ -14,10 +14,10 @@ required_providers {
     source  = "hashicorp/random"
     version = "~> 3.7"
   }
-  local = {
-    source  = "hashicorp/local"
-    version = "~> 2.5"
-  }
+#  local = {
+#    source  = "hashicorp/local"
+#    version = "~> 2.5"
+#  }
 }
 
 provider "google" "configurations" {
@@ -37,4 +37,4 @@ provider "google" "configurations" {
 
 provider "random" "this" {}
 provider "archive" "this" {}
-provider "local" "this" {}
+#provider "local" "this" {}
