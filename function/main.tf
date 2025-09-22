@@ -12,23 +12,24 @@ data "archive_file" "function_zip" {
   output_path = "/tmp/hello-world.zip"
 }
 
-# Because the apply environment may be different from the plan environment, pass
-# the file contents through the `data.local_file.function_zip` data source,
-# whose value is stored in the plan.
-data "local_file" "function_zip" {
-  filename = data.archive_file.function_zip.output_path
-}
+# # Because the apply environment may be different from the plan environment, pass
+# # the file contents through the `data.local_file.function_zip` data source,
+# # whose value is stored in the plan.
+# data "local_file" "function_zip" {
+#   filename = data.archive_file.function_zip.output_path
+# }
 
-resource "local_file" "function_zip" {
-  filename = "/tmp/final.zip"
-  content_base64 = data.local_file.function_zip.content_base64
-}
+# resource "local_file" "function_zip" {
+#   filename = "/tmp/final.zip"
+#   content_base64 = data.local_file.function_zip.content_base64
+# }
 
 resource "google_storage_bucket_object" "function_zip" {
   name   = "hello-world.zip"
   bucket = var.storage_bucket_name
-  source = local_file.function_zip.filename
-  detect_md5hash = local_file.function_zip.content_md5
+#  source = local_file.function_zip.filename
+  source = archive_file.function_zip.output_path
+#  detect_md5hash = local_file.function_zip.content_md5
 
 #  depends_on = [data.local_file.function_zip]
 }
