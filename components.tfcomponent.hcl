@@ -10,6 +10,19 @@ component "project" {
   }
 }
 
+component "network" {
+  source = "./network"
+  for_each = var.regions
+
+  inputs = {
+    project = var.project_id
+  }
+
+  providers = {
+    google = provider.google.this[each.value]
+  }
+}
+
 #component "instance" {
 #  source   = "./instance"
 #  for_each = var.regions

@@ -24,19 +24,19 @@ provider "google" "global" {
   }
 }
 
-#provider "google" "this" {
-#  for_each = var.regions
+provider "google" "this" {
+  for_each = var.regions
 
-#  config {
-#    project = var.project_id
-#    region  = each.value
+  config {
+    project = var.project_id
+    region  = each.value
 
-#    external_credentials {
-#      audience              = var.audience
-#      service_account_email = var.service_account_email
-#      identity_token        = var.identity_token
-#    }
-#  }
-#}
+    external_credentials {
+      audience              = var.audience
+      service_account_email = var.service_account_email
+      identity_token        = var.identity_token
+    }
+  }
+}
 
 provider "tls" "this" {}
