@@ -17,6 +17,7 @@ component "network" {
   inputs = {
     project      = var.project_id
     environment  = var.environment
+    region       = each.value
     network_name = "stacks-${var.environment}-${each.value}"
   }
 
