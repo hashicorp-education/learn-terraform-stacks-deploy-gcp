@@ -5,10 +5,10 @@ resource "google_compute_network" "stacks" {
 }
 
 resource "google_compute_subnetwork" "stacks" {
-  for_each = toset(var.private_subnets)
+  count = length(var.private_subnets)
 
-  name          = "subnet-${var.environment}-${var.region}-${each.key}"
+  name          = "subnet-${var.environment}-${var.region}-${count.index}"
   region        = var.region
   network       = google_compute_network.stacks.id
-  ip_cidr_range = each.value
+  ip_cidr_range = var.private_subnets[count.index]
 }
