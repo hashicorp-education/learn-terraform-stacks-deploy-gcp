@@ -31,7 +31,11 @@ component "instance" {
   for_each = var.regions
 
   inputs = {
-    network_id = component.network[each.value].network_id
+    network = {
+      network_id = component.network[each.value].network_id
+      private_subnet_ids = component.network[each.value].private_subnet_ids
+    }
+
     service_account_email = var.service_account_email
     region = each.value
   }

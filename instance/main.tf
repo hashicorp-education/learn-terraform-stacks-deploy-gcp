@@ -21,9 +21,11 @@ resource "random_shuffle" "zone" {
 }
 
 resource "google_compute_instance" "default" {
+  count = length(var.network.private_subnet_ids) * var.instances_per_subnet
+
   name         = random_pet.instance_name.id
   machine_type = var.machine_type
-  zone = random_shuffle.zone.result[0]
+  zone         = random_shuffle.zone.result[0]
 
   boot_disk {
     initialize_params {
@@ -32,9 +34,8 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    network = var.network_id
+    subnetwork = var.network.private_subnet_ids[count.index % length(var.network.private_subnet_ids)]
     access_config {
-      // Ephemeral IP
     }
   }
 
