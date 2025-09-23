@@ -11,6 +11,8 @@ data "google_compute_zones" "available" {
 }
 
 resource "random_pet" "instance_name" {
+  count = length(var.network.private_subnet_ids) * var.instances_per_subnet
+
   length    = 3
   separator = "-"
 }
@@ -23,7 +25,7 @@ resource "random_shuffle" "zone" {
 resource "google_compute_instance" "default" {
   count = length(var.network.private_subnet_ids) * var.instances_per_subnet
 
-  name         = random_pet.instance_name.id
+  name         = random_pet.instance_name[count.index % length(var.network.private_subnet_ids)].id
   machine_type = var.machine_type
   zone         = random_shuffle.zone.result[0]
 
