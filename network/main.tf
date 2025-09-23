@@ -5,7 +5,7 @@ resource "google_compute_network" "stacks" {
 }
 
 resource "google_compute_subnetwork" "stacks" {
-  for_each = var.private_subnets
+  for_each = toset(var.private_subnets)
 
   name          = "subnet-${var.environment}-${var.region}-${each.key}"
   region        = var.region
