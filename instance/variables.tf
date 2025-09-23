@@ -3,7 +3,7 @@
 
 variable "region" {
   description = "Region for instances."
-  type = string
+  type        = string
 }
 
 variable "network" {
@@ -16,13 +16,13 @@ variable "network" {
 
 variable "service_account_email" {
   description = "Email address of service account."
-  type = string
+  type        = string
 }
 
 variable "machine_type" {
   description = "Machine type for instances."
-  type = string
-  default = "e2-micro"
+  type        = string
+  default     = "e2-micro"
 }
 
 variable "instances_per_subnet" {

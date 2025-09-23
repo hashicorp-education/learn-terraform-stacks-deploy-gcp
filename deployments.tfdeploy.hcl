@@ -9,26 +9,24 @@ deployment "development" {
   inputs = {
     identity_token = identity_token.gcp.jwt
 
-    audience              = "//iam.googleapis.com/projects/273379066538/locations/global/workloadIdentityPools/humorous-malamu/providers/stacks"
-    service_account_email = "humorous-malamu@hc-d7632f1e0d86431591226359a2e.iam.gserviceaccount.com"
-    project_id            = "hc-d7632f1e0d86431591226359a2e"
+    audience              = "<YOUR_JWT_AUDIENCE>"
+    service_account_email = "<YOUR_SERVICE_ACCOUNT_EMAIL>"
+    project_id            = "<YOUR_GCP_PROJECT_ID>"
 
-    regions = ["us-central1"]
+    regions     = ["us-central1"]
     environment = "dev"
   }
-  destroy = "true"
 }
 
 deployment "production" {
   inputs = {
     identity_token = identity_token.gcp.jwt
 
-    audience              = "//iam.googleapis.com/projects/273379066538/locations/global/workloadIdentityPools/humorous-malamu/providers/stacks"
-    service_account_email = "humorous-malamu@hc-d7632f1e0d86431591226359a2e.iam.gserviceaccount.com"
-    project_id            = "hc-d7632f1e0d86431591226359a2e"
+    audience              = "<YOUR_JWT_AUDIENCE>"
+    service_account_email = "<YOUR_SERVICE_ACCOUNT_EMAIL>"
+    project_id            = "<YOUR_GCP_PROJECT_ID>"
 
-    regions = ["us-central1", "us-west1"]
+    regions     = ["us-central1", "us-west1"]
     environment = "prod"
   }
-  destroy = "true"
 }

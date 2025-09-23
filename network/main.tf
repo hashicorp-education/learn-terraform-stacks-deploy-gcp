@@ -1,7 +1,7 @@
 resource "google_compute_network" "stacks" {
-  project                         = var.project
-  name                            = var.network_name
-  auto_create_subnetworks         = false
+  project                 = var.project
+  name                    = var.network_name
+  auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "stacks" {

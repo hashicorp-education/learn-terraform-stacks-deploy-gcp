@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MPL-2.0
 
 component "project" {
-  source   = "./project"
+  source = "./project"
 
   providers = {
     google = provider.google.global
@@ -11,7 +11,7 @@ component "project" {
 }
 
 component "network" {
-  source = "./network"
+  source   = "./network"
   for_each = var.regions
 
   inputs = {
@@ -27,17 +27,17 @@ component "network" {
 }
 
 component "instance" {
-  source = "./instance"
+  source   = "./instance"
   for_each = var.regions
 
   inputs = {
     network = {
-      network_id = component.network[each.value].network_id
+      network_id         = component.network[each.value].network_id
       private_subnet_ids = component.network[each.value].private_subnet_ids
     }
 
     service_account_email = var.service_account_email
-    region = each.value
+    region                = each.value
   }
 
   providers = {
