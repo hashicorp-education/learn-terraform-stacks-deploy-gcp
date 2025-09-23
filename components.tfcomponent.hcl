@@ -24,6 +24,21 @@ component "network" {
   }
 }
 
+component "instance" {
+  source = "./instance"
+  for_each = var.regions
+
+  inputs = {
+    network_id = component.network[each.value].network_id
+    service_account_email = var.service_account_email
+  }
+
+  providers = {
+    google = provider.google.this[each.value]
+    random = provider.random.this
+  }
+}
+
 #component "instance" {
 #  source   = "./instance"
 #  for_each = var.regions

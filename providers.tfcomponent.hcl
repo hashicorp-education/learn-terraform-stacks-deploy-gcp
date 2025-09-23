@@ -10,6 +10,10 @@ required_providers {
     source  = "hashicorp/tls"
     version = "~> 4.1.0"
   }
+  random = {
+    source = "hashicorp/random"
+    version = "~> 3.7.2"
+  }
 }
 
 provider "google" "global" {
@@ -40,3 +44,4 @@ provider "google" "this" {
 }
 
 provider "tls" "this" {}
+provider "random" "this" {}

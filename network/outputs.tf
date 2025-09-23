@@ -1,14 +1,9 @@
-output "project" {
-  description = "Project id"
-  value       = google_compute_network.vpc.project
-}
-
-output "network" {
-  description = "The created network"
-  value       = google_compute_network.vpc
+output "network_id" {
+  description = "The network ID."
+  value       = google_compute_network.stacks.id
 }
 
 output "network_name" {
-  description = "Name of VPC"
-  value       = google_compute_network.vpc.name
+  description = "Network name"
+  value       = google_compute_network.stacks.name
 }
