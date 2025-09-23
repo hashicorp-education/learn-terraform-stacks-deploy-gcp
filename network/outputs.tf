@@ -4,6 +4,11 @@ output "network_id" {
 }
 
 output "network_name" {
-  description = "Network name"
+  description = "Network name."
   value       = google_compute_network.stacks.name
+}
+
+output "private_subnet_ids" {
+  description = "IDs of private subnets."
+  value = google_compute_subnetwork.stacks.id
 }
