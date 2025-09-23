@@ -14,6 +14,7 @@ deployment "development" {
     project_id            = "hc-d7632f1e0d86431591226359a2e"
 
     regions = ["us-central1"]
+    environment = "dev"
   }
 }
 
@@ -26,5 +27,6 @@ deployment "production" {
     project_id            = "hc-d7632f1e0d86431591226359a2e"
 
     regions = ["us-central1", "us-west1"]
+    environment = "prod"
   }
 }

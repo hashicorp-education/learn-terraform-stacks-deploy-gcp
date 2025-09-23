@@ -15,7 +15,8 @@ component "network" {
   for_each = var.regions
 
   inputs = {
-    project = var.project_id
+    project      = var.project_id
+    network_name = "stacks-example-${var.environment}"
   }
 
   providers = {
