@@ -16,6 +16,7 @@ deployment "development" {
     regions = ["us-central1"]
     environment = "dev"
   }
+  destroy = true
 }
 
 deployment "production" {
@@ -29,4 +30,5 @@ deployment "production" {
     regions = ["us-central1", "us-west1"]
     environment = "prod"
   }
+  destroy = true
 }
