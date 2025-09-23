@@ -3,10 +3,9 @@
 
 component "project" {
   source   = "./project"
-  for_each = var.regions
 
   providers = {
-    google = provider.google.this[each.value]
+    google = provider.google.global
     tls    = provider.tls.this
   }
 }

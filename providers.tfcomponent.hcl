@@ -12,6 +12,20 @@ required_providers {
   }
 }
 
+provider "google" "global" {
+  config {
+    project = var.project_id
+    region  = "global"
+
+    external_credentials {
+      audience              = var.audience
+      service_account_email = var.service_account_email
+      identity_token        = var.identity_token
+    }
+  }
+}
+
+
 provider "google" "this" {
   for_each = var.regions
 
