@@ -6,6 +6,10 @@ required_providers {
     source  = "hashicorp/google"
     version = "~> 7.3.0"
   }
+  tls = {
+    source  = "hashicorp/tls"
+    version = "~> 4.1.0"
+  }
 }
 
 provider "google" "this" {
@@ -22,3 +26,5 @@ provider "google" "this" {
     }
   }
 }
+
+provider "tls" "this" {}

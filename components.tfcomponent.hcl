@@ -7,6 +7,7 @@ component "project" {
 
   providers = {
     google = provider.google.this[each.value]
+    tls    = provider.tls.this
   }
 }
 
