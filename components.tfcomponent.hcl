@@ -31,6 +31,7 @@ component "instance" {
   inputs = {
     network_id = component.network[each.value].network_id
     service_account_email = var.service_account_email
+    region = each.value
   }
 
   providers = {

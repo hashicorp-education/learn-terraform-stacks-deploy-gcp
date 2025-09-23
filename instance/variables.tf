@@ -7,6 +7,11 @@ variable "machine_type" {
   default = "e2-micro"
 }
 
+variable "region" {
+  description = "Region for instances."
+  type = string
+}
+
 variable "service_account_email" {
   description = "Email address of service account."
   type = string
