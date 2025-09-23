@@ -1,37 +1,40 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
-component "storage" {
+component "project" {
+  source   = "./project"
   for_each = var.regions
 
-  source = "./storage"
-
-  inputs = {
-    region     = each.value
-    project_id = var.project_id
-  }
-
   providers = {
-    google   = provider.google.configurations[each.value]
-    random   = provider.random.this
+    google = provider.google.this[each.value]
   }
 }
 
-component "function" {
-  for_each = var.regions
+#component "instance" {
+#  source   = "./instance"
+#  for_each = var.regions
 
-  source = "./function"
+#  inputs = {
+#    network = {
+#      vpc_id             = component.vpc[each.value].vpc_id
+#      private_subnet_ids = component.vpc[each.value].private_subnet_ids
+#      security_group_ids = [component.vpc[each.value].security_group_id_ssh]
+#    }
 
-  inputs = {
-    region     = each.value
-    project_id = var.project_id  
-    storage_bucket_name = component.storage[each.value].storage_bucket_name
-  }
+#    key_name = component.key_pair[each.value].key_name
+#  }
 
-  providers = {
-    google  = provider.google.configurations[each.value]
-    archive = provider.archive.this
-    random  = provider.random.this
-    local   = provider.local.this
-  }
-}
+#  providers = {
+#    aws = provider.aws.this[each.value]
+#  }
+#}
+
+#component "key_pair" {
+#  source   = "./key_pair"
+#  for_each = var.regions
+
+#  providers = {
+#    aws = provider.aws.this[each.value]
+#    tls = provider.tls.this
+#  }
+#}

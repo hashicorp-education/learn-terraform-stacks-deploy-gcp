@@ -4,23 +4,11 @@
 required_providers {
   google = {
     source  = "hashicorp/google"
-    version = "~> 7.3"
-  }
-  archive = {
-    source  = "hashicorp/archive"
-    version = "~> 2.7"
-  }
-  random = {
-    source  = "hashicorp/random"
-    version = "~> 3.7"
-  }
-  local = {
-    source  = "hashicorp/local"
-    version = "~> 2.5"
+    version = "~> 7.3.0"
   }
 }
 
-provider "google" "configurations" {
+provider "google" "this" {
   for_each = var.regions
 
   config {
@@ -28,13 +16,9 @@ provider "google" "configurations" {
     region  = each.value
 
     external_credentials {
-      audience = var.audience
+      audience              = var.audience
       service_account_email = var.service_account_email
-      identity_token = var.identity_token
-    }    
+      identity_token        = var.identity_token
+    }
   }
 }
-
-provider "random" "this" {}
-provider "archive" "this" {}
-provider "local" "this" {}
