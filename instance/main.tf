@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MPL-2.0
 
 data "google_compute_image" "noble_lts" {
-  family  = "ubuntu-2404-lts"
+  family  = "ubuntu-2404-lts-amd64"
   project = "ubuntu-os-cloud"
 }
 
