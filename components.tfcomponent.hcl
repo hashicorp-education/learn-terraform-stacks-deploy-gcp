@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: MPL-2.0
 
 component "project" {
+  for_each = var.regions
+
   source   = "./project"
 
   providers = {
